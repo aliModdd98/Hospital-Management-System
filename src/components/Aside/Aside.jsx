@@ -6,33 +6,65 @@ import {
   ListItemIcon,
   Box,
   Toolbar,
+  Typography,
 } from "@mui/material";
 import menuItems from "../../const/MenuItems";
 import { NavLink } from "react-router-dom";
 import { useThemeContext } from "../../theme";
+
 const drawerWidth = 240;
 
 const Aside = ({ mobileOpen, handleDrawerToggle }) => {
   const { isDarkMode } = useThemeContext();
 
-  const activeStyle = {
-    backgroundColor: isDarkMode ? "#ffffff" : "#000000",
-    color: isDarkMode ? "#000000" : "#ffffff",
-    transition: "background-color 0.3s ease",
-  };
+  const getActiveStyles = (isActive) => ({
+    backgroundColor: isActive
+      ? isDarkMode
+        ? "#444444" // Light Gray for Dark Mode
+        : "#000000" // Black for Light Mode
+      : "transparent", // Default style when inactive
+    color: isActive
+      ? isDarkMode
+        ? "#ffffff" // White text in Dark Mode
+        : "#ffffff" // White text in Light Mode
+      : isDarkMode
+      ? "#ffffff" // Default white text in Dark Mode
+      : "#333333", // Default dark text in Light Mode
+    transition: "background-color 0.3s ease, color 0.3s ease",
+  });
 
   const drawer = (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        height: "100%",
+      }}
+    >
+      {/* Logo section */}
+      <Box sx={{ textAlign: "center", padding: "16px" }}>
+        <Typography
+          variant="h3"
+          sx={{
+            fontFamily: "'Qwitcher Grypen', cursive",
+            fontWeight: 700,
+          }}
+        >
+          A&M Care
+        </Typography>
+        <Typography variant="h6">Where Every Life Matters</Typography>
+      </Box>
       <Toolbar />
       <Box sx={{ overflow: "auto" }}>
         <List>
           {menuItems.map((item, index) => (
             <ListItem
               button
+              key={index}
               component={NavLink}
               to={item.route}
-              key={index}
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              style={({ isActive }) => getActiveStyles(isActive)}
             >
               <ListItemIcon>
                 <item.icon />
@@ -42,7 +74,7 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
           ))}
         </List>
       </Box>
-    </div>
+    </Box>
   );
 
   return (
@@ -69,13 +101,14 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
             height: "100vh",
             backgroundColor: "background.paper",
             color: "text.primary",
-            justifyContent: "center",
+            justifyContent: "space-evenly",
           },
         }}
       >
         {drawer}
       </Drawer>
 
+      {/* Permanent Drawer */}
       <Drawer
         variant="permanent"
         sx={{

@@ -15,14 +15,15 @@ export const ThemeStore = ({ children }) => {
     setIsDarkMode((prevMode) => !prevMode);
   };
 
+  // Create a theme with attractive accent colors (blue/teal) for both light and dark modes
   const theme = createTheme({
     palette: {
       mode: isDarkMode ? "dark" : "light",
       primary: {
-        main: isDarkMode ? "#000" : "#fff", // Light Blue for Dark Mode, Blue for Light Mode
+        main: isDarkMode ? "#00bcd4" : "#00796b", // Teal Blue for Dark Mode, Dark Green for Light Mode
       },
       secondary: {
-        main: isDarkMode ? "#bbbbbb" : "#333333", // Light Pink for Dark Mode, Pink for Light Mode
+        main: isDarkMode ? "#ff4081" : "#f50057", // Bright Pink for Dark Mode, Deep Pink for Light Mode
       },
       background: {
         default: isDarkMode ? "#121212" : "#ffffff", // Very Dark Gray for Dark Mode, White for Light Mode
@@ -40,7 +41,7 @@ export const ThemeStore = ({ children }) => {
             width: "100%",
             textTransform: "none",
             borderRadius: 8,
-            backgroundColor: isDarkMode ? "#333333" : "#f5f5f5",
+            backgroundColor: isDarkMode ? "#00796b" : "#00bcd4", // Dark Teal for Dark Mode, Light Teal for Light Mode
             color: isDarkMode ? "#ffffff" : "#333333",
           },
         },
@@ -48,16 +49,17 @@ export const ThemeStore = ({ children }) => {
       MuiDrawer: {
         styleOverrides: {
           paper: {
-            backgroundColor: isDarkMode ? "#333333" : "#f5f5f5",
-            color: isDarkMode ? "#ffffff" : "#333333",
+            backgroundColor: isDarkMode ? "#1e1e1e" : "#f5f5f5", // Dark Gray for Dark Mode, Light Gray for Light Mode
+            color: isDarkMode ? "#ffffff" : "#333333", // White for Dark Mode, Dark Text for Light Mode
           },
         },
       },
       MuiButton: {
         styleOverrides: {
           root: {
+            backgroundColor: isDarkMode ? "#00796b" : "#00bcd4", // Button color matches primary color
             "&:hover": {
-              backgroundColor: "#0d0f0fc9",
+              backgroundColor: isDarkMode ? "#004d40" : "#0097a7", // Darker shade on hover
               color: "#ffffff",
             },
           },
@@ -66,7 +68,7 @@ export const ThemeStore = ({ children }) => {
       MuiTypography: {
         styleOverrides: {
           root: {
-            color: isDarkMode ? "#ffffff" : "#333333",
+            color: isDarkMode ? "#ffffff" : "#333333", // Text color matches the current mode
           },
         },
       },
