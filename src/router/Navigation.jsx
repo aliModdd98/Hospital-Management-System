@@ -6,6 +6,7 @@ import Rooms from "../pages/Rooms";
 import Doctors from "../pages/Doctors";
 import Services from "../pages/Services";
 import SurgerySchedule from "../pages/SurgerySchedule";
+import Statistics from "../pages/Statistics";
 
 const Navigation = () => {
   <Route path="*" element={<Navigate to="/" />} />;
@@ -15,6 +16,7 @@ const Navigation = () => {
       <Route path="/" element={<Navigate to="/Login" />} />
       <Route path="login" element={<Login />} />
       <Route exact path="/dashBoard" element={<Layout />}>
+        <Route path="statistics" element={<Statistics />} />
         <Route path="departments" element={<Departments />} />
         <Route path="rooms" element={<Rooms />} />
         <Route path="doctors" element={<Doctors />} />

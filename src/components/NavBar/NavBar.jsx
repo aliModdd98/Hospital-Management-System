@@ -48,7 +48,11 @@ const NavBar = ({ handleDrawerToggle }) => {
           <MenuIcon />
         </IconButton>
 
-        <Typography variant="h5" sx={{ fontWeight: "bold" }} noWrap>
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: "bold", color: "primary.main" }}
+          noWrap
+        >
           Hospital Management System
         </Typography>
 

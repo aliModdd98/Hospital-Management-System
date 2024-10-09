@@ -70,6 +70,15 @@ const Login = () => {
           <Typography component="h1" variant="h3" sx={{ fontWeight: "bold" }}>
             Sign In
           </Typography>
+          <Typography
+            variant="h3"
+            sx={{
+              fontFamily: "'Qwitcher Grypen', cursive",
+              fontWeight: 700,
+            }}
+          >
+            A&M Care
+          </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

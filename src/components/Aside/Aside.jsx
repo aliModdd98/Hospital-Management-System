@@ -17,20 +17,17 @@ const drawerWidth = 240;
 const Aside = ({ mobileOpen, handleDrawerToggle }) => {
   const { isDarkMode } = useThemeContext();
 
+  // Function to apply active styles based on dark/light mode
   const getActiveStyles = (isActive) => ({
-    backgroundColor: isActive
-      ? isDarkMode
-        ? "#444444" // Light Gray for Dark Mode
-        : "#000000" // Black for Light Mode
-      : "transparent", // Default style when inactive
-    color: isActive
-      ? isDarkMode
-        ? "#ffffff" // White text in Dark Mode
-        : "#ffffff" // White text in Light Mode
-      : isDarkMode
-      ? "#ffffff" // Default white text in Dark Mode
-      : "#333333", // Default dark text in Light Mode
-    transition: "background-color 0.3s ease, color 0.3s ease",
+    backgroundColor: isActive ? "#008080" : "transparent", // Teal background for active items
+    color: isActive ? "#ffffff" : isDarkMode ? "#ffffff" : "#333333", // White text for active, gray for inactive
+    fontWeight: isActive ? 600 : 400, // Bold text for active
+    boxShadow: isActive ? "0px 4px 10px rgba(0, 128, 128, 0.6)" : "none", // Subtle shadow for active
+    transform: isActive ? "scale(1.05)" : "scale(1)", // Slight scale effect for active
+    borderRadius: "8px", // Rounded corners
+    transition: "all 0.3s ease-in-out", // Smooth transition
+    padding: "10px 15px", // Adjust padding for a more button-like feel
+    margin: "5px 5px", // Add margin between items for spacing
   });
 
   const drawer = (
@@ -40,6 +37,7 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
         flexDirection: "column",
         justifyContent: "flex-start",
         height: "100%",
+        overflow: "hidden",
       }}
     >
       {/* Logo section */}
@@ -49,6 +47,7 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
           sx={{
             fontFamily: "'Qwitcher Grypen', cursive",
             fontWeight: 700,
+            color: "primary.main",
           }}
         >
           A&M Care
@@ -56,7 +55,7 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
         <Typography variant="h6">Where Every Life Matters</Typography>
       </Box>
       <Toolbar />
-      <Box sx={{ overflow: "auto" }}>
+      <Box sx={{ overflow: "hidden" }}>
         <List>
           {menuItems.map((item, index) => (
             <ListItem
@@ -64,7 +63,7 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
               key={index}
               component={NavLink}
               to={item.route}
-              style={({ isActive }) => getActiveStyles(isActive)}
+              style={({ isActive }) => getActiveStyles(isActive)} // Apply active styles
             >
               <ListItemIcon>
                 <item.icon />

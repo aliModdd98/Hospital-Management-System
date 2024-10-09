@@ -15,52 +15,49 @@ export const ThemeStore = ({ children }) => {
     setIsDarkMode((prevMode) => !prevMode);
   };
 
-  // Create a theme with attractive accent colors (blue/teal) for both light and dark modes
+  // Create a theme with accent colors for both light and dark modes
   const theme = createTheme({
     palette: {
       mode: isDarkMode ? "dark" : "light",
       primary: {
-        main: isDarkMode ? "#00bcd4" : "#00796b", // Teal Blue for Dark Mode, Dark Green for Light Mode
+        main: "#008080",
       },
       secondary: {
-        main: isDarkMode ? "#ff4081" : "#f50057", // Bright Pink for Dark Mode, Deep Pink for Light Mode
+        main: "#005f5f",
       },
       background: {
-        default: isDarkMode ? "#121212" : "#ffffff", // Very Dark Gray for Dark Mode, White for Light Mode
-        paper: isDarkMode ? "#1e1e1e" : "#f5f5f5", // Dark Gray for Dark Mode, Light Gray for Light Mode
+        default: isDarkMode ? "#121212" : "#ffffff", // Dark for Dark Mode, White for Light Mode
+        paper: isDarkMode ? "#1e1e1e" : "#f5f5f5", // Paper background
       },
       text: {
-        primary: isDarkMode ? "#ffffff" : "#333333", // White for Dark Mode, Dark Gray for Light Mode
-        secondary: isDarkMode ? "#bbbbbb" : "#666666", // Light Gray for Dark Mode, Medium Gray for Light Mode
+        primary: isDarkMode ? "#ffffff" : "#333333", // White text for Dark Mode, dark gray for Light Mode
+        secondary: isDarkMode ? "#bbbbbb" : "#666666", // Light gray for Dark Mode, medium gray for Light Mode
       },
     },
     components: {
       MuiAppBar: {
         styleOverrides: {
           root: {
-            width: "100%",
-            textTransform: "none",
-            borderRadius: 8,
-            backgroundColor: isDarkMode ? "#00796b" : "#00bcd4", // Dark Teal for Dark Mode, Light Teal for Light Mode
-            color: isDarkMode ? "#ffffff" : "#333333",
+            backgroundColor: isDarkMode ? "#00796b" : "#00bcd4", // Teal shades for both modes
+            color: isDarkMode ? "#ffffff" : "#333333", // White text for Dark Mode, dark text for Light Mode
           },
         },
       },
       MuiDrawer: {
         styleOverrides: {
           paper: {
-            backgroundColor: isDarkMode ? "#1e1e1e" : "#f5f5f5", // Dark Gray for Dark Mode, Light Gray for Light Mode
-            color: isDarkMode ? "#ffffff" : "#333333", // White for Dark Mode, Dark Text for Light Mode
+            backgroundColor: isDarkMode ? "#1e1e1e" : "#f5f5f5", // Drawer background colors
+            color: isDarkMode ? "#ffffff" : "#333333", // White text for Dark Mode, dark text for Light Mode
           },
         },
       },
       MuiButton: {
         styleOverrides: {
           root: {
-            backgroundColor: isDarkMode ? "#00796b" : "#00bcd4", // Button color matches primary color
+            backgroundColor: isDarkMode ? "#00796b" : "#00bcd4", // Button primary color
             "&:hover": {
               backgroundColor: isDarkMode ? "#004d40" : "#0097a7", // Darker shade on hover
-              color: "#ffffff",
+              color: "#ffffff", // White text on hover
             },
           },
         },
@@ -68,7 +65,7 @@ export const ThemeStore = ({ children }) => {
       MuiTypography: {
         styleOverrides: {
           root: {
-            color: isDarkMode ? "#ffffff" : "#333333", // Text color matches the current mode
+            color: isDarkMode ? "#ffffff" : "#333333", // Text color
           },
         },
       },
@@ -76,7 +73,7 @@ export const ThemeStore = ({ children }) => {
   });
 
   return (
-    <ThemeContext.Provider value={{ toggleTheme }}>
+    <ThemeContext.Provider value={{ toggleTheme, isDarkMode }}>
       <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </ThemeContext.Provider>
   );
