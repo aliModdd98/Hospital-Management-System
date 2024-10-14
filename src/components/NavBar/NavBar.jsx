@@ -16,6 +16,7 @@ import { useThemeContext } from "../../theme";
 const NavBar = ({ handleDrawerToggle }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const { toggleTheme } = useThemeContext();
+
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -50,16 +51,31 @@ const NavBar = ({ handleDrawerToggle }) => {
 
         <Typography
           variant="h5"
-          sx={{ fontWeight: "bold", color: "primary.main" }}
+          sx={{
+            fontWeight: "bold",
+            color: "primary.main",
+            flexGrow: 1,
+            textAlign: "start",
+            fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem" },
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
           noWrap
         >
           Hospital Management System
         </Typography>
 
-        <Box>
-          <IconButton color="inherit" onClick={toggleTheme}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          {/* Theme Switch visible only on larger screens */}
+          <IconButton
+            color="inherit"
+            sx={{ display: { xs: "none", sm: "block" } }} // Hide on small screens
+            onClick={toggleTheme}
+          >
             <Switch />
           </IconButton>
+
           {/* User Avatar and Dropdown */}
           <IconButton onClick={handleMenuOpen} color="inherit">
             <Avatar alt="User Name" src="/path/to/user/image.jpg" />
@@ -69,12 +85,24 @@ const NavBar = ({ handleDrawerToggle }) => {
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
             onClose={handleMenuClose}
-            // Adjust the dropdown to open directly below the Avatar icon
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             transformOrigin={{ vertical: "top", horizontal: "center" }}
           >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
+            {/* Theme Switch inside Dropdown for Small Screens */}
+            <MenuItem>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Typography>Toggle Theme</Typography>
+                <Switch onChange={toggleTheme} />
+              </Box>
+            </MenuItem>
           </Menu>
         </Box>
       </Toolbar>

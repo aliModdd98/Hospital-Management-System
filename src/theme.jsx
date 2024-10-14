@@ -26,7 +26,7 @@ export const ThemeStore = ({ children }) => {
         main: "#005f5f",
       },
       background: {
-        default: isDarkMode ? "#121212" : "#ffffff", // Dark for Dark Mode, White for Light Mode
+        default: isDarkMode ? "#1e1e1e" : "#ffffff", // Dark for Dark Mode, White for Light Mode
         paper: isDarkMode ? "#1e1e1e" : "#f5f5f5", // Paper background
       },
       text: {

@@ -10,24 +10,25 @@ import {
 } from "@mui/material";
 import menuItems from "../../const/MenuItems";
 import { NavLink } from "react-router-dom";
-import { useThemeContext } from "../../theme";
+import PropTypes from "prop-types";
 
 const drawerWidth = 240;
 
 const Aside = ({ mobileOpen, handleDrawerToggle }) => {
-  const { isDarkMode } = useThemeContext();
-
   // Function to apply active styles based on dark/light mode
   const getActiveStyles = (isActive) => ({
-    backgroundColor: isActive ? "#008080" : "transparent", // Teal background for active items
-    color: isActive ? "#ffffff" : isDarkMode ? "#ffffff" : "#333333", // White text for active, gray for inactive
-    fontWeight: isActive ? 600 : 400, // Bold text for active
-    boxShadow: isActive ? "0px 4px 10px rgba(0, 128, 128, 0.6)" : "none", // Subtle shadow for active
-    transform: isActive ? "scale(1.05)" : "scale(1)", // Slight scale effect for active
-    borderRadius: "8px", // Rounded corners
-    transition: "all 0.3s ease-in-out", // Smooth transition
-    padding: "10px 15px", // Adjust padding for a more button-like feel
-    margin: "5px 5px", // Add margin between items for spacing
+    backgroundColor: isActive ? "#008080" : "transparent",
+    color: isActive ? "#ffffff" : "#333333",
+    fontWeight: isActive ? "bold" : 400,
+    boxShadow: isActive ? "0px 4px 10px rgba(0, 128, 128, 0.6)" : "none",
+    transform: isActive ? "scale(1.05)" : "scale(1)",
+    borderRadius: "20px",
+    transition: "all 0.3s ease-in-out",
+    padding: "10px 15px",
+    margin: "5px 0",
+    width: "100%",
+    display: "flex", // Ensure flex display for row alignment
+    alignItems: "center", // Center items vertically
   });
 
   const drawer = (
@@ -35,12 +36,12 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
+        height: "100vh",
         justifyContent: "flex-start",
-        height: "100%",
         overflow: "hidden",
       }}
     >
-      {/* Logo section */}
+      {/* Logo Section */}
       <Box sx={{ textAlign: "center", padding: "16px" }}>
         <Typography
           variant="h3"
@@ -55,15 +56,15 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
         <Typography variant="h6">Where Every Life Matters</Typography>
       </Box>
       <Toolbar />
-      <Box sx={{ overflow: "hidden" }}>
-        <List>
+      <Box sx={{ overflow: "hidden", height: "100%" }}>
+        <List sx={{ width: "100%" }}>
           {menuItems.map((item, index) => (
             <ListItem
-              button
               key={index}
+              button="true"
               component={NavLink}
               to={item.route}
-              style={({ isActive }) => getActiveStyles(isActive)} // Apply active styles
+              style={({ isActive }) => getActiveStyles(isActive)}
             >
               <ListItemIcon>
                 <item.icon />
@@ -94,13 +95,14 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
         ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: "block", sm: "none" },
+
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: drawerWidth,
             height: "100vh",
             backgroundColor: "background.paper",
             color: "text.primary",
-            justifyContent: "space-evenly",
+            marginTop: "3rem",
           },
         }}
       >
@@ -118,7 +120,6 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
             height: "100vh",
             backgroundColor: "background.paper",
             color: "text.primary",
-            justifyContent: "center",
           },
         }}
         open
@@ -128,5 +129,8 @@ const Aside = ({ mobileOpen, handleDrawerToggle }) => {
     </Box>
   );
 };
-
+Aside.propTypes = {
+  mobileOpen: PropTypes.bool.isRequired,
+  handleDrawerToggle: PropTypes.func.isRequired,
+};
 export default Aside;
