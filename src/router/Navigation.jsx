@@ -1,12 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../pages/Login";
 import Layout from "../layouts/Layout";
-import Departments from "../pages/Departments";
-import Rooms from "../pages/Rooms";
-import Doctors from "../pages/Doctors";
-import Services from "../pages/Services";
-import SurgerySchedule from "../pages/SurgerySchedule";
 import Statistics from "../pages/Statistics";
+import DepartmentRoutes from "../modules/DepartmentsSection/router/routes";
+import RoomsRoutes from "../modules/Rooms/routes/routes";
+import ServicesRoutes from "../modules/Services/routes/routes";
+import DoctorsRoutes from "../modules/Doctors/routes/routes";
+import SurgeryRoutes from "../modules/SurgerySchedule/routes/routes";
 
 const Navigation = () => {
   <Route path="*" element={<Navigate to="/" />} />;
@@ -17,12 +17,13 @@ const Navigation = () => {
       <Route path="login" element={<Login />} />
       <Route exact path="/dashBoard" element={<Layout />}>
         <Route path="statistics" element={<Statistics />} />
-        <Route path="departments" element={<Departments />} />
-        <Route path="rooms" element={<Rooms />} />
-        <Route path="doctors" element={<Doctors />} />
-        <Route path="services" element={<Services />} />
-        <Route path="surgery-schedule" element={<SurgerySchedule />} />
-      </Route>
+        <Route path="departments/*" element={<DepartmentRoutes />} />
+        <Route path="rooms/*" element={<RoomsRoutes />} />
+        <Route path="doctors/*" element={<DoctorsRoutes />} />
+        <Route path="services/*" element={<ServicesRoutes />} />
+        <Route path="surgery-schedule/*" element={<SurgeryRoutes />} />
+      </Route>{" "}
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

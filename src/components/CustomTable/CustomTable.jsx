@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -15,10 +16,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import PropTypes from "prop-types";
 
-const CustomTable = ({ data, actions }) => {
+const CustomTable = ({ data, actions, route }) => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortBy, setSortBy] = useState(null);
   const [sortedData, setSortedData] = useState(data);
+  const navigate = useNavigate(); // Initialize the navigation hook
 
   // Effect to handle data changes from props
   useEffect(() => {
@@ -38,6 +40,11 @@ const CustomTable = ({ data, actions }) => {
     });
 
     setSortedData(newSortedData);
+  };
+
+  const handleRowClick = (id) => {
+    console.log(`Navigating to: /dashboard/${route}/${id}`);
+    navigate(`/dashboard/${route}/${id}`);
   };
 
   return (
@@ -61,9 +68,15 @@ const CustomTable = ({ data, actions }) => {
         </TableHead>
         <TableBody>
           {sortedData.map((row, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} hover>
               {Object.entries(row).map(([key, value]) => (
-                <TableCell key={key}>{value}</TableCell>
+                <TableCell
+                  key={key}
+                  onClick={key === "id" ? () => handleRowClick(value) : null} // Add click handler to ID column
+                  style={key === "id" ? { cursor: "pointer" } : {}}
+                >
+                  {value}
+                </TableCell>
               ))}
               <TableCell>
                 {actions.map((action) => (
@@ -97,6 +110,7 @@ CustomTable.propTypes = {
       handler: PropTypes.func.isRequired,
     })
   ).isRequired,
+  route: PropTypes.string,
 };
 
 export default CustomTable;
