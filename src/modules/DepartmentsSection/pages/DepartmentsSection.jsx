@@ -28,31 +28,76 @@ const DepartmentsSection = () => {
     console.log("Secondary action clicked!");
     handleModalClose();
   };
-  const exampleData = [
-    { id: 1, name: "John Doe", email: "john@example.com" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com" },
-    { id: 3, name: "Alice Johnson", email: "alice@example.com" },
+  const handleEdit = (row) => {
+    console.log("Edit action triggered for:", row);
+  };
+
+  const handleDelete = (row) => {
+    console.log("Delete action triggered for:", row);
+  };
+
+  const handleAssign = (row) => {
+    console.log("Assign action triggered for:", row);
+  };
+  const exampleDepartmentData = [
+    {
+      id: 1,
+      departmentName: "Emergency",
+      numberOfRooms: 10,
+      availableRooms: 4,
+      headOfDepartment: {
+        name: "Dr. John Smith",
+        contact: "john.smith@hospital.com",
+      },
+    },
+    {
+      id: 2,
+      departmentName: "Surgery",
+      numberOfRooms: 8,
+      availableRooms: 3,
+      headOfDepartment: {
+        name: "Dr. Susan Clark",
+        contact: "susan.clark@hospital.com",
+      },
+    },
+    {
+      id: 3,
+      departmentName: "Internal Medicine",
+      numberOfRooms: 12,
+      availableRooms: 5,
+      headOfDepartment: {
+        name: "Dr. Linda Green",
+        contact: "linda.green@hospital.com",
+      },
+    },
+    {
+      id: 4,
+      departmentName: "Pediatrics",
+      numberOfRooms: 6,
+      availableRooms: 2,
+      headOfDepartment: {
+        name: "Dr. Robert White",
+        contact: "robert.white@hospital.com",
+      },
+    },
+    {
+      id: 5,
+      departmentName: "Radiology",
+      numberOfRooms: 5,
+      availableRooms: 1,
+      headOfDepartment: {
+        name: "Dr. Kevin Parker",
+        contact: "kevin.parker@hospital.com",
+      },
+    },
   ];
+
   const actions = [
-    {
-      type: "update",
-      handler: (row) => {
-        console.log("Update action for:", row);
-      },
-    },
-    {
-      type: "delete",
-      handler: (row) => {
-        console.log("Delete action for:", row);
-      },
-    },
-    {
-      type: "assign",
-      handler: (row) => {
-        console.log("Assign action for:", row);
-      },
-    },
+    { type: "update", handler: handleEdit },
+    { type: "delete", handler: handleDelete },
+    { type: "assign", handler: handleAssign },
   ];
+  const assignableItems = ["User 1", "User 2", "User 3"];
   return (
     <Box
       sx={{
@@ -68,10 +113,11 @@ const DepartmentsSection = () => {
         onButtonClick={() => setModalOpen((prev) => !prev)}
       />{" "}
       <CustomTable
-        data={exampleData}
+        data={exampleDepartmentData}
         actions={actions}
         section="admin"
         route="departments"
+        assignItems={assignableItems}
       />
       <CustomModal
         open={modalOpen}

@@ -28,6 +28,8 @@ const SurgeryScheduleSection = () => {
       },
     },
   ];
+  const assignableItems = ["User 1", "User 2", "User 3"];
+
   return (
     <Box
       sx={{
@@ -46,6 +48,7 @@ const SurgeryScheduleSection = () => {
         actions={actions}
         section="admin"
         route="services"
+        assignItems={assignableItems}
       />
     </Box>
   );

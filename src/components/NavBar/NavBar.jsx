@@ -12,17 +12,22 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useThemeContext } from "../../theme";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const NavBar = ({ handleDrawerToggle }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const { toggleTheme } = useThemeContext();
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
+  const handleMenuClose = (route) => {
     setAnchorEl(null);
+    if (route) {
+      navigate(route);
+    }
   };
 
   return (
@@ -33,9 +38,9 @@ const NavBar = ({ handleDrawerToggle }) => {
         zIndex: (theme) => theme.zIndex.drawer + 1,
         backgroundColor: (theme) => theme.palette.background.paper,
         color: (theme) => theme.palette.text.primary,
-        width: { sm: `calc(100% - 240px)` }, // Adjust width to fill the remaining space
-        ml: { sm: `${240}px` }, // Move the NavBar to the right by the width of Aside
-        borderLeft: "none", // Hide the left border
+        width: { sm: `calc(100% - 240px)` },
+        ml: { sm: `${240}px` },
+        borderLeft: "none",
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -84,12 +89,16 @@ const NavBar = ({ handleDrawerToggle }) => {
           <Menu
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
+            onClose={() => handleMenuClose(null)}
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             transformOrigin={{ vertical: "top", horizontal: "center" }}
           >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
+            <MenuItem onClick={() => handleMenuClose("/dashBoard/account")}>
+              Profile
+            </MenuItem>
+            <MenuItem onClick={() => handleMenuClose("/dashBoard/settings")}>
+              Settings
+            </MenuItem>
             {/* Theme Switch inside Dropdown for Small Screens */}
             <MenuItem>
               <Box

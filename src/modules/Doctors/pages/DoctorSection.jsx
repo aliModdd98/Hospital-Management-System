@@ -96,6 +96,8 @@ const DoctorSection = () => {
       },
     },
   ];
+  const assignableItems = ["User 1", "User 2", "User 3"];
+
   return (
     <Box
       sx={{
@@ -114,6 +116,7 @@ const DoctorSection = () => {
         actions={actions}
         section="admin"
         route="doctors"
+        assignItems={assignableItems}
       />
     </Box>
   );

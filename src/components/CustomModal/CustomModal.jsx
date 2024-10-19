@@ -33,6 +33,8 @@ const CustomModal = ({
           justifyContent: "center",
           alignItems: "center",
           margin: "auto",
+          padding: "1.5rem",
+          minWidth: "300px",
         },
       }}
     >

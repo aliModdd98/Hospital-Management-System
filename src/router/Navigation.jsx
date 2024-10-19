@@ -7,6 +7,8 @@ import RoomsRoutes from "../modules/Rooms/routes/routes";
 import ServicesRoutes from "../modules/Services/routes/routes";
 import DoctorsRoutes from "../modules/Doctors/routes/routes";
 import SurgeryRoutes from "../modules/SurgerySchedule/routes/routes";
+import Account from "../pages/Account";
+import Settings from "../pages/Settings";
 
 const Navigation = () => {
   <Route path="*" element={<Navigate to="/" />} />;
@@ -22,6 +24,8 @@ const Navigation = () => {
         <Route path="doctors/*" element={<DoctorsRoutes />} />
         <Route path="services/*" element={<ServicesRoutes />} />
         <Route path="surgery-schedule/*" element={<SurgeryRoutes />} />
+        <Route path="account" element={<Account />} />
+        <Route path="settings" element={<Settings />} />
       </Route>{" "}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
