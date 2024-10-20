@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Login from "../pages/Login";
 import Layout from "../layouts/Layout";
 import Statistics from "../pages/Statistics";
 import DepartmentRoutes from "../modules/DepartmentsSection/router/routes";
@@ -9,6 +8,7 @@ import DoctorsRoutes from "../modules/Doctors/routes/routes";
 import SurgeryRoutes from "../modules/SurgerySchedule/routes/routes";
 import Account from "../pages/Account";
 import Settings from "../pages/Settings";
+import LoginSignUp from "../pages/Login";
 
 const Navigation = () => {
   <Route path="*" element={<Navigate to="/" />} />;
@@ -16,7 +16,7 @@ const Navigation = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/Login" />} />
-      <Route path="login" element={<Login />} />
+      <Route path="login" element={<LoginSignUp />} />
       <Route exact path="/dashBoard" element={<Layout />}>
         <Route path="statistics" element={<Statistics />} />
         <Route path="departments/*" element={<DepartmentRoutes />} />
