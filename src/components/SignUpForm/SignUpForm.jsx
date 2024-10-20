@@ -5,12 +5,41 @@ import { Link } from "react-router-dom";
 const SignUpForm = ({ handleSwitch }) => {
   return (
     <Box sx={{ padding: 4 }}>
-      <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-        <LockOutlinedIcon />
-      </Avatar>
-      <Typography component="h1" variant="h5" sx={{ fontWeight: "bold" }}>
-        Sign Up
-      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {" "}
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography
+          component="h1"
+          variant="h5"
+          sx={{
+            fontWeight: "bold",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Sign Up To{" "}
+          <Typography
+            variant="h3"
+            sx={{
+              fontFamily: "'Qwitcher Grypen', cursive",
+              fontWeight: 700,
+              marginLeft: "0.5rem",
+            }}
+          >
+            A&M Care
+          </Typography>
+        </Typography>
+      </Box>
       <Box component="form" noValidate sx={{ mt: 1 }}>
         <TextField
           margin="normal"
