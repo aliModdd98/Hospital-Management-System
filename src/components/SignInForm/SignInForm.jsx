@@ -1,8 +1,12 @@
 import { Avatar, Box, Button, TextField, Typography } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignInForm = ({ handleSwitch }) => {
+  const navigation = useNavigate();
+  const handleSignIn = () => {
+    navigation("/dashBoard/departments");
+  };
   return (
     <Box sx={{ padding: 4 }}>
       <Box
@@ -66,6 +70,7 @@ const SignInForm = ({ handleSwitch }) => {
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
+          onClick={handleSignIn}
         >
           Sign In
         </Button>
