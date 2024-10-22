@@ -6,9 +6,16 @@ import HeroSection from "../components/HeroSection/HeroSection";
 import CustomTable from "../components/CustomTable/CustomTable";
 import CustomModal from "../components/CustomModal/CustomModal";
 import CustomInput from "../components/CustomInput/CustomInput";
+import Calendar from "../components/Calendar/Calendar";
+import dayjs from "dayjs";
 
 const DepartmentsSection = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(dayjs());
+
+  const handleDateChange = (newDate) => {
+    setSelectedDate(newDate);
+  };
   const {
     control,
     handleSubmit,
@@ -168,6 +175,7 @@ const DepartmentsSection = () => {
                 }}
                 sx={{ marginBottom: "24px" }}
               />
+              <Calendar control={control} />
             </Box>
           </>
         }
