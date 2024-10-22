@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../layouts/Layout";
 import Statistics from "../pages/Statistics";
-
 import Account from "../pages/Account";
 import Settings from "../pages/Settings";
 import LoginSignUp from "../pages/Login";
@@ -17,13 +16,14 @@ import SurgeryScheduleSection from "../pages/SurgeryScheduleSection";
 import SurgeryScheduleDetails from "../pages/SurgeryScheduleDetails";
 
 const Navigation = () => {
-  <Route path="*" element={<Navigate to="/" />} />;
-
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/Login" />} />
-      <Route path="login" element={<LoginSignUp />} />
-      <Route exact path="/dashBoard" element={<Layout />}>
+      {/* Redirect root path to login */}
+      <Route path="/" element={<Navigate to="/login" />} />
+      {/* Login Route */}
+      <Route path="/login" element={<LoginSignUp />} />
+      {/* Protected Routes within Layout */}
+      <Route path="/dashBoard" element={<Layout />}>
         <Route path="statistics" element={<Statistics />} />
         <Route path="departments" element={<DepartmentsSection />}>
           <Route path=":id" element={<DepartmentDetail />} />
@@ -42,7 +42,8 @@ const Navigation = () => {
         </Route>
         <Route path="account" element={<Account />} />
         <Route path="settings" element={<Settings />} />
-      </Route>{" "}
+      </Route>
+      {/* Catch all for redirecting to login */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
