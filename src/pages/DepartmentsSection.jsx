@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Box } from "@mui/material";
 
 import { useForm } from "react-hook-form";
-import HeroSection from "../../../components/HeroSection/HeroSection";
-import CustomTable from "../../../components/CustomTable/CustomTable";
-import CustomModal from "../../../components/CustomModal/CustomModal";
-import CustomInput from "../../../components/CustomInput/CustomInput";
+import HeroSection from "../components/HeroSection/HeroSection";
+import CustomTable from "../components/CustomTable/CustomTable";
+import CustomModal from "../components/CustomModal/CustomModal";
+import CustomInput from "../components/CustomInput/CustomInput";
 
 const DepartmentsSection = () => {
   const [modalOpen, setModalOpen] = useState(false);

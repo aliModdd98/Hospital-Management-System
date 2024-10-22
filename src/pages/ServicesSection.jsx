@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import HeroSection from "../../../components/HeroSection/HeroSection";
-import CustomTable from "../../../components/CustomTable/CustomTable";
+import HeroSection from "../components/HeroSection/HeroSection";
+import CustomTable from "../components/CustomTable/CustomTable";
 
 const ServicesSection = () => {
   const exampleData = [
