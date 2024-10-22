@@ -1,11 +1,11 @@
 import { Avatar, Box, Button, TextField, Typography } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignInForm = ({ handleSwitch }) => {
   const navigation = useNavigate();
   const handleSignIn = () => {
-    navigation("/dashBoard/departments");
+    navigation("/dashBoard/statistics");
   };
   return (
     <Box sx={{ padding: 4 }}>
