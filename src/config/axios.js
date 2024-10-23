@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { API_BASE_URL } from "../utils/const";
+import API_BASE_URL from "../const/API_const";
 
 // Function to get the current token from localStorage
 const getToken = () => localStorage.getItem("token");

@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 import ChartA from "../components/ChartA/ChartA";
 import ChartB from "../components/ChartB/ChartB";

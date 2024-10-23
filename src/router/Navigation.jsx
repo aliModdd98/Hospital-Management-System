@@ -25,21 +25,24 @@ const Navigation = () => {
       {/* Protected Routes within Layout */}
       <Route path="/dashBoard" element={<Layout />}>
         <Route path="statistics" element={<Statistics />} />
-        <Route path="departments" element={<DepartmentsSection />}>
-          <Route path=":id" element={<DepartmentDetail />} />
-        </Route>
-        <Route path="rooms" element={<RoomsSection />}>
-          <Route path=":id" element={<RoomDetails />} />
-        </Route>
-        <Route path="doctors" element={<DoctorSection />}>
-          <Route path=":id" element={<DoctorDetails />} />
-        </Route>
-        <Route path="services" element={<ServicesSection />}>
-          <Route path=":id" element={<ServicesDetails />} />
-        </Route>
-        <Route path="surgery-schedule" element={<SurgeryScheduleSection />}>
-          <Route path=":id" element={<SurgeryScheduleDetails />} />
-        </Route>
+        <Route path="departments" element={<DepartmentsSection />} />
+        <Route path="departments/:id" element={<DepartmentDetail />} />
+
+        <Route path="rooms/*" element={<RoomsSection />} />
+        <Route path="rooms/:id" element={<RoomDetails />} />
+
+        <Route path="doctors" element={<DoctorSection />} />
+        <Route path="doctors/:id" element={<DoctorDetails />} />
+
+        <Route path="services" element={<ServicesSection />} />
+        <Route path="services/:id" element={<ServicesDetails />} />
+
+        <Route path="surgery-schedule" element={<SurgeryScheduleSection />} />
+        <Route
+          path="surgery-schedule/:id"
+          element={<SurgeryScheduleDetails />}
+        />
+
         <Route path="account" element={<Account />} />
         <Route path="settings" element={<Settings />} />
       </Route>

@@ -7,15 +7,11 @@ import CustomTable from "../components/CustomTable/CustomTable";
 import CustomModal from "../components/CustomModal/CustomModal";
 import CustomInput from "../components/CustomInput/CustomInput";
 import Calendar from "../components/Calendar/Calendar";
-import dayjs from "dayjs";
+import { Outlet } from "react-router-dom";
 
 const DepartmentsSection = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(dayjs());
 
-  const handleDateChange = (newDate) => {
-    setSelectedDate(newDate);
-  };
   const {
     control,
     handleSubmit,
@@ -114,6 +110,7 @@ const DepartmentsSection = () => {
         // flexGrow: 1,
       }}
     >
+      <Outlet />
       <HeroSection
         title="Departments of Hospital"
         buttonText="Add Department"
